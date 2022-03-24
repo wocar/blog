@@ -18,8 +18,6 @@ us to run LINQPad on MacOS in a somewhat stable manner.
 In this tutorial simple tutorial, I'll show you how to do it because it is somewhat
 tricky!
 
-![test.jpg]({{site.baseurl}}/assets/test.jpg)
-
 Configure CrossOver 21.2
 ===================
 
