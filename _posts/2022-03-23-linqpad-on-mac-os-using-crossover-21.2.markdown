@@ -1,11 +1,12 @@
 ---
 layout: post
-
-title:  "LINQPad on MacOS using CrossOver 21.2"
-
-date:   2022-03-23 19:16:08 -0400
-
-categories: [tools, linqpad, crossover]
+title: LINQPad on MacOS using CrossOver 21.2
+date: '2022-03-23 19:16:08 -0400'
+categories:
+  - tools
+  - linqpad
+  - crossover
+published: true
 ---
 
 We all love LINQPad, and for sure we also love developing in our shinny MacBooks,
@@ -16,6 +17,8 @@ us to run LINQPad on MacOS in a somewhat stable manner.
 
 In this tutorial simple tutorial, I'll show you how to do it because it is somewhat
 tricky!
+
+![test.jpg]({{site.baseurl}}/assets/test.jpg)
 
 Configure CrossOver 21.2
 ===================
