@@ -2,16 +2,19 @@
 
 title: William Obando | Developer Blog
 email: william@oban.do
-author: William Obando
+author:
+  name: William Obando
+  email: "william@oban.do"
 description: >- # this means to ignore newlines until "baseurl:"
-  This is William Obando's .NET developer blog.
+    William Obando's .NET developer blog.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://wocar.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-theme: minima
+remote_theme: jekyll/minima@69664442e5a45f631d5bccaba6d7978a91ce22c8
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 
 google_analytics: G-2KWGMZBDQ3
@@ -19,6 +22,8 @@ google_analytics: G-2KWGMZBDQ3
 disqus:
     shortname: wocar-blog
 
-github_username: wocar
-linkedin_username: wocar
+minima:
+  social_links:
+    github: wocar
+    linkedin: williamobando1
 
