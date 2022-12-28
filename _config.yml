@@ -8,7 +8,7 @@ author:
 description: >- # this means to ignore newlines until "baseurl:"
     William Obando's .NET developer blog.
 baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "http://wocar.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://william.oban.do" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 remote_theme: jekyll/minima@69664442e5a45f631d5bccaba6d7978a91ce22c8
