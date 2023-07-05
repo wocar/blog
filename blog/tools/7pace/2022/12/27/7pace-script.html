@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>7pace utility | William Obando Developer Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="7pace utility" />
+<meta name="author" content="William Obando" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In our company we use a software called 7pace to fill our timesheet." />
+<meta property="og:description" content="In our company we use a software called 7pace to fill our timesheet." />
+<link rel="canonical" href="http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html" />
+<meta property="og:url" content="http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html" />
+<meta property="og:site_name" content="William Obando Developer Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-27T23:16:08+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="7pace utility" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"William Obando"},"dateModified":"2022-12-27T23:16:08+00:00","datePublished":"2022-12-27T23:16:08+00:00","description":"In our company we use a software called 7pace to fill our timesheet.","headline":"7pace utility","mainEntityOfPage":{"@type":"WebPage","@id":"http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html"},"url":"http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://william.oban.do/blog/feed.xml" title="William Obando | Developer Blog" /><script async src="https://www.googletagmanager.com/gtag/js?id=G-2KWGMZBDQ3"></script>
+<script>
+  window['ga-disable-G-2KWGMZBDQ3'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2KWGMZBDQ3');
+</script>
+
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">William Obando | Developer Blog</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">7pace utility</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-12-27T23:16:08+00:00" itemprop="datePublished">
+        Dec 27, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In our company we use a software called 7pace to fill our timesheet.</p>
+
+<p>Unfortunately you can only click up to 4h in a single click. With this little script it will default to 8hrs</p>
+
+<hr />
+
+<p><img src="/blog/assets/7pace-ss.png" alt="Screenshot" /></p>
+
+<hr />
+
+<p>Download or include the script here <a href="/blog/download/7pace.v0.1.js">/blog/download/7pace.v0.1.js</a></p>
+
+<p>You need to install tampermonkey / userscripts for it to work.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ==UserScript==
+// @name         7Pace Time Tracker Default 8hrs
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.timehub.7pace.com/
+// @icon         https://www.google.com/s2/favicons?domain=azure.com
+// @grant        none
+// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+
+// ==/UserScript==
+
+waitForKeyElements (".hub-content", onLoad);
+
+async function onLoad()
+{
+    var dialog = $(".add-time-dialog");
+    if(dialog.is(":visible"))
+    {
+        var processed = dialog.data("processed");
+        if(processed) return;
+        if(!processed)
+        {
+            dialog.data("processed", true);
+            $(".timeframe-duration").timeEntry('setTime', new Date(0, 0, 0, 8, 0, 0));
+        }
+    }
+
+}
+
+</code></pre></div></div>
+
+  </div><div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html';
+      this.page.identifier = 'http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://wocar-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/blog/tools/7pace/2022/12/27/7pace-script.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">William Obando</li>
+          <li><a class="u-email" href="mailto:william@oban.do">william@oban.do</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>William Obando&#39;s .NET developer blog.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/wocar" target="_blank" title="wocar"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/williamobando1" target="_blank" title="williamobando1"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

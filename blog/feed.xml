@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://william.oban.do/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://william.oban.do/blog/" rel="alternate" type="text/html" /><updated>2023-07-05T14:10:13+00:00</updated><id>http://william.oban.do/blog/feed.xml</id><title type="html">William Obando | Developer Blog</title><subtitle>William Obando's .NET developer blog.</subtitle><author><name>William Obando</name><email>william@oban.do</email></author><entry><title type="html">7pace utility</title><link href="http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html" rel="alternate" type="text/html" title="7pace utility" /><published>2022-12-27T23:16:08+00:00</published><updated>2022-12-27T23:16:08+00:00</updated><id>http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script</id><content type="html" xml:base="http://william.oban.do/blog/tools/7pace/2022/12/27/7pace-script.html"><![CDATA[<p>In our company we use a software called 7pace to fill our timesheet.</p>
+
+<p>Unfortunately you can only click up to 4h in a single click. With this little script it will default to 8hrs</p>
+
+<hr />
+
+<p><img src="/blog/assets/7pace-ss.png" alt="Screenshot" /></p>
+
+<hr />
+
+<p>Download or include the script here <a href="/blog/download/7pace.v0.1.js">/blog/download/7pace.v0.1.js</a></p>
+
+<p>You need to install tampermonkey / userscripts for it to work.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ==UserScript==
+// @name         7Pace Time Tracker Default 8hrs
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.timehub.7pace.com/
+// @icon         https://www.google.com/s2/favicons?domain=azure.com
+// @grant        none
+// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+
+// ==/UserScript==
+
+waitForKeyElements (".hub-content", onLoad);
+
+async function onLoad()
+{
+    var dialog = $(".add-time-dialog");
+    if(dialog.is(":visible"))
+    {
+        var processed = dialog.data("processed");
+        if(processed) return;
+        if(!processed)
+        {
+            dialog.data("processed", true);
+            $(".timeframe-duration").timeEntry('setTime', new Date(0, 0, 0, 8, 0, 0));
+        }
+    }
+
+}
+
+</code></pre></div></div>]]></content><author><name>William Obando</name><email>william@oban.do</email></author><category term="tools" /><category term="7pace" /><summary type="html"><![CDATA[In our company we use a software called 7pace to fill our timesheet.]]></summary></entry><entry><title type="html">LINQPad on MacOS using CrossOver 21.2</title><link href="http://william.oban.do/blog/tools/linqpad/crossover/2022/03/23/linqpad-on-mac-os-using-crossover-21.2.html" rel="alternate" type="text/html" title="LINQPad on MacOS using CrossOver 21.2" /><published>2022-03-23T23:16:08+00:00</published><updated>2022-03-23T23:16:08+00:00</updated><id>http://william.oban.do/blog/tools/linqpad/crossover/2022/03/23/linqpad-on-mac-os-using-crossover-21.2</id><content type="html" xml:base="http://william.oban.do/blog/tools/linqpad/crossover/2022/03/23/linqpad-on-mac-os-using-crossover-21.2.html"><![CDATA[<p>We all love LINQPad, and for sure we also love developing in our shinny MacBooks,
+unfortunately these two don’t get along very well.</p>
+
+<p>This was the case for many years, however and luckily for all of us, CrossOver 21.2 allows
+us to run LINQPad on MacOS in a somewhat stable manner.</p>
+
+<p>In this tutorial simple tutorial, I’ll show you how to do it because it is somewhat
+tricky!</p>
+
+<h1 id="configure-crossover-212">Configure CrossOver 21.2</h1>
+
+<p>Download crossover from my affiliate link
+here <a href="https://www.codeweavers.com/?ad=903">https://www.codeweavers.com/crossover/download</a></p>
+
+<p>Installation should be pretty straight forward, if not take a look
+at <a href="https://www.codeweavers.com/support/wiki/mac/mactutorial/install">How to install CrossOver Mac</a></p>
+
+<p><em>Crossover costs $59.95 for one year of support. For me
+investing those extra bucks was definitely worth it. There is also a free trial</em></p>
+
+<h1 id="creating-a-bottle">Creating a bottle</h1>
+<ol>
+  <li>Click the + sign at the bottom left corner and click “New bottle…”</li>
+  <li>Name the bottle however you want</li>
+  <li>Choose “Windows 7” <strong>(very important)</strong> NO x64</li>
+  <li>Right click the bottle you just created (make sure you don’t create a new one, the UI
+is tricky)</li>
+  <li>Choose: Install software in “Your bottle name”</li>
+  <li>Type and search in the list “Microsoft .NET Framework 4.5”.</li>
+  <li>Repeat the process and install “Microsoft .NET Framework 4.6.2”</li>
+</ol>
+
+<p><strong>Sometimes the installer might seem freeze</strong>, this could be because there is a background
+window waiting for your input, don’t forget to click Next-Finish-Next-Finish-Next on all the installers’
+windows that popup.</p>
+
+<p>Click restart now when prompted (It won’t actually restart your computer)</p>
+
+<p>This is how I managed to get it working.</p>
+
+<h1 id="install-linqpad">Install LINQPad</h1>
+
+<p>I prefer the XCopy (zip) method, however in this case it is easier to use the installer.</p>
+
+<ol>
+  <li>Download LINQPad 7 from
+here <a href="https://www.linqpad.net/GetFile.aspx?LINQPad7Setup.exe">LINQPad7Setup.exe</a></li>
+  <li>Right click you bottle and choose Install software in “Your bottle name”</li>
+  <li>Go to the second tab called “Choose an installer”</li>
+  <li>Choose the first option and select LINQPad7Setup.exe from your downloads</li>
+  <li>Wait for the wizard to install and click on install x86 runtime</li>
+  <li>Finish wizard &amp; run linqpad from crossover</li>
+</ol>
+
+<h1 id="important-linqpad-config">Important LINQPad config!</h1>
+
+<ul>
+  <li>Enable: Preferences -&gt; Results -&gt; Default destination: Grid</li>
+  <li>Always use “Results to DataGrid (Control + Shift + G)”</li>
+  <li>Windows 7 64 bits + x86 linqpad is the most reliable version I’ve found ✅</li>
+  <li>Windows 10 + x86 linqpad works but make sure you don’t use “Results to RichText”</li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>Now you are ready to use LINQPad in MacOS in a somewhat reliable manner.</p>
+
+<p>I did try many configurations, you can check out my notes here:</p>
+
+<details>
+  <summary>Expand to view notes!</summary>
+  
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">      Config 1: Most reliable ✅ (Very few crashes)
+         Windows 7 64 Bits 
+         NET 4.5.2 
+         Unlisted application
+      
+         HTML results not working choose grid
+         Looks ugly
+         Use x86 version
+         x64 version doesn't launch
+      
+      Config 2: 
+         Windows 7
+         NET 4.5.2
+         Choose optimize for Notepad++
+      
+         Crashes from time to time
+         Looks pretty
+         Html Dump works
+      
+      Config 3:
+         Windows 10 64 bit
+         Productivity -&gt; 64-bit dependencies (installs a lot of stuff, takes like 10 min to install)
+      
+         Doesn't even launch linqpad&gt;
+      
+         
+      Config 4:
+         Windows 10 
+         Unlisted App
+      
+         Keeps throwing <span class="sb">`System.EntryPointNotFoundException`</span>
+         Reinstall and optimize for Notepad++: Crashes randomly (not as often)? (Does this even make any difference? Who knows)
+         How to reproduce crashes: 
+            Dump some results to HTML
+            Stop typing for about a minute (without losing focus)
+            Type Control-S or Command-S (save) it will crash the app
+         Use legacy IE: Still crashes but not that often :(
+         Workaround 1:
+            Never use html dump, always dump to grid (Y)
+
+      </code></pre></figure>
+
+
+</details>]]></content><author><name>William Obando</name><email>william@oban.do</email></author><category term="tools" /><category term="linqpad" /><category term="crossover" /><summary type="html"><![CDATA[We all love LINQPad, and for sure we also love developing in our shinny MacBooks, unfortunately these two don’t get along very well.]]></summary></entry></feed>
